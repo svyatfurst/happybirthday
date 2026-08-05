@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#6f4bbb" />
+  <meta name="description" content="Інтерактивний 3D-острів із персонажами та звуками." />
+  <title>З ДН</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <!-- Версія зафіксована, тому оновлення CDN не зламає проєкт зненацька. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="scene" aria-label="Інтерактивний тривимірний острів"></canvas>
+
+  <div id="loading" class="loading" role="status" aria-live="polite">
+    <div class="loading__card">
+      <strong>Випускаю енергетического монстра…</strong>
+      <div class="loading__track"><span id="loading-bar"></span></div>
+      <span id="loading-label">0%</span>
+    </div>
+  </div>
+
+  
+
+  <nav class="rotation-controls" aria-label="Керування обертанням острова">
+    <button id="rotate-left" class="round-button" type="button" aria-label="Повернути острів ліворуч">←</button>
+    <button id="rotate-right" class="round-button" type="button" aria-label="Повернути острів праворуч">→</button>
+  </nav>
+
+  <div class="toolbar">
+    <button id="sound-toggle" class="glass-button" type="button" aria-pressed="false">
+      <span id="sound-icon" aria-hidden="true">🔊</span>
+      <span id="sound-label">Звук</span>
+    </button>
+    <button id="credits-open" class="glass-button" type="button">Ліцензії</button>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="credits-dialog" class="credits-dialog">
+    <form method="dialog" class="credits-dialog__card">
+      <div class="credits-dialog__header">
+        <div>
+          <span class="eyebrow">Атрибуція</span>
+          <h2>Моделі та ліцензії</h2>
+        </div>
+        <button class="close-button" value="close" aria-label="Закрити">×</button>
+      </div>
+      <div class="credits-dialog__content">
+        <p>
+          Повний текст і прямі посилання є у файлі <code>CREDITS.md</code>.
+          Особливо зверни увагу: модель кота має ліцензію <strong>CC BY-NC 4.0</strong>
+          і не підходить для комерційного використання без окремого дозволу.
+        </p>
+        <ul>
+          <li>Hachiware — okd49, CC BY-ND 4.0</li>
+          <li>Kasane Teto plush — chilisroom, CC BY 4.0</li>
+          <li>My Stupid Idiot Cat — rosytoonz, CC BY-NC 4.0</li>
+          <li>Charlie kirk (FREEDOM Shirt) — 1PlayerChryyzz, CC BY 4.0</li>
+        </ul>
+      </div>
+      <button class="dialog-button" value="close">Зрозуміло</button>
+    </form>
+  </dialog>
+
+  <noscript>Для цієї сторінки потрібен JavaScript.</noscript>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
